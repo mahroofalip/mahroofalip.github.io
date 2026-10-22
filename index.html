@@ -1,0 +1,431 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mahroof Ali P</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Mahroof Ali P – Senior Developer. Zoho CRM, Deluge, Zoho Creator and third-party integrations. MERN, Angular, .NET Core.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: an integration engineer's schematic. Hero thesis + live Deluge snippet, then a wiring table of every system connected to Zoho, then work, timeline, contact. */
+:root {
+  --bg: #f4f6f8;
+  --surface: #ffffff;
+  --ink: #15202e;
+  --muted: #5a6676;
+  --line: #d9dfe6;
+  --accent: #0b7a83;
+  --accent-soft: #e2f1f2;
+  --wire: #c27c0e;
+  --code-bg: #15202e;
+  --code-fg: #dfe7ef;
+  --code-dim: #8796a8;
+  --code-key: #6fd0d6;
+  --code-str: #f0b65a;
+  --f-display: "Sora", "Segoe UI", system-ui, sans-serif;
+  --f-body: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f151d; --surface: #16202b; --ink: #e6ecf2; --muted: #9aa8b8; --line: #263342;
+    --accent: #4cc3cb; --accent-soft: #15333a; --wire: #e3a245;
+    --code-bg: #0a0f15; --code-fg: #dfe7ef; --code-dim: #6f7f92; --code-key: #6fd0d6; --code-str: #f0b65a;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f151d; --surface: #16202b; --ink: #e6ecf2; --muted: #9aa8b8; --line: #263342;
+  --accent: #4cc3cb; --accent-soft: #15333a; --wire: #e3a245;
+  --code-bg: #0a0f15; --code-fg: #dfe7ef; --code-dim: #6f7f92; --code-key: #6fd0d6; --code-str: #f0b65a;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: var(--f-body); font-size: 1.0625rem; line-height: 1.6;
+}
+.wrap {
+  max-width: 1080px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+h1, h2, h3 { font-family: var(--f-display); text-wrap: balance; margin: 0; line-height: 1.2; }
+.label {
+  font-family: var(--f-mono); font-size: .75rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted);
+}
+
+/* Nav */
+header.top {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+}
+header.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 12px; }
+.brand { font-family: var(--f-display); font-weight: 700; color: var(--ink); text-decoration: none; letter-spacing: .02em; }
+nav { display: flex; gap: 20px; flex-wrap: wrap; }
+nav a { color: var(--muted); text-decoration: none; font-size: .95rem; }
+nav a:hover { color: var(--ink); }
+@media (max-width: 640px) { nav .hide-sm { display: none; } }
+
+/* Hero */
+.hero { padding-block: 64px 48px; display: grid; grid-template-columns: 1.1fr .9fr; gap: 48px; align-items: center; }
+.hero > * { min-width: 0; }
+.status {
+  display: inline-flex; align-items: center; gap: 8px; font-size: .9rem; color: var(--ink);
+  background: var(--accent-soft); border-radius: 999px; padding: 4px 12px 4px 10px; margin-bottom: 20px;
+}
+.status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+.hero h1 { font-size: clamp(2rem, 4.4vw, 3.1rem); font-weight: 700; letter-spacing: -.01em; }
+.hero h1 em { font-style: normal; color: var(--accent); }
+.hero p.lede { color: var(--muted); max-width: 58ch; margin: 20px 0 28px; font-size: 1.125rem; }
+.who { font-family: var(--f-mono); font-size: .85rem; color: var(--muted); margin-bottom: 10px; }
+.cta { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px; font: 600 .95rem var(--f-body);
+  padding: 10px 18px; border-radius: 8px; text-decoration: none; border: 1px solid var(--accent); cursor: pointer;
+}
+.btn.primary { background: var(--accent); color: var(--bg); }
+.btn.ghost { background: transparent; color: var(--accent); }
+
+.code {
+  background: var(--code-bg); color: var(--code-fg); border-radius: 12px; overflow: hidden;
+  font: .8rem/1.7 var(--f-mono); box-shadow: 0 20px 40px -24px rgba(10, 20, 30, .45);
+}
+.code .bar { display: flex; justify-content: space-between; padding: 10px 16px; border-bottom: 1px solid rgba(255,255,255,.08); color: var(--code-dim); font-size: .72rem; }
+.code pre { margin: 0; padding: 16px; overflow-x: auto; }
+.c-dim { color: var(--code-dim); } .c-key { color: var(--code-key); } .c-str { color: var(--code-str); }
+
+/* Figures */
+.figures { display: grid; grid-template-columns: repeat(4, 1fr); border-block: 1px solid var(--line); }
+.figures div { padding: 20px 16px; border-left: 1px solid var(--line); }
+.figures div:first-child { border-left: 0; padding-left: 0; }
+.figures b { display: block; font: 700 1.9rem var(--f-display); font-variant-numeric: tabular-nums; }
+.figures span { color: var(--muted); font-size: .92rem; }
+@media (max-width: 640px) {
+  .hero { grid-template-columns: 1fr; padding-block: 40px 32px; gap: 32px; }
+  .figures { grid-template-columns: repeat(2, 1fr); }
+  .figures div { border-left: 0; padding-left: 0; }
+}
+
+section { padding-block: 64px 0; }
+.sec-head { display: flex; flex-direction: column; gap: 8px; margin-bottom: 28px; max-width: 62ch; }
+.sec-head h2 { font-size: clamp(1.5rem, 3vw, 2rem); }
+.sec-head p { margin: 0; color: var(--muted); }
+
+/* Wiring table */
+.wiring { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+.group { display: grid; grid-template-columns: 200px 1fr; border-top: 1px solid var(--line); }
+.group:first-child { border-top: 0; }
+.group > h3 { font: 600 .95rem var(--f-display); padding: 18px 20px; background: color-mix(in srgb, var(--accent-soft) 55%, transparent); }
+.group > h3 small { display: block; font: 400 .75rem var(--f-mono); color: var(--muted); margin-top: 4px; letter-spacing: .04em; }
+.links { padding: 8px 20px; display: grid; gap: 0; min-width: 0; }
+.link { display: grid; grid-template-columns: minmax(0, 1fr) 72px minmax(0, 1fr); align-items: center; gap: 12px; padding: 9px 0; border-bottom: 1px dashed var(--line); }
+.link:last-child { border-bottom: 0; }
+.link .from { font-weight: 600; }
+.link .to { font-family: var(--f-mono); font-size: .82rem; color: var(--accent); }
+.wire { position: relative; height: 2px; background: var(--wire); opacity: .75; }
+.wire::before, .wire::after { content: ""; position: absolute; top: -3px; width: 8px; height: 8px; border-radius: 50%; background: var(--wire); }
+.wire::before { left: -2px; } .wire::after { right: -2px; }
+.link .note { grid-column: 1 / -1; color: var(--muted); font-size: .92rem; margin-top: -4px; }
+@media (max-width: 720px) {
+  .group { grid-template-columns: 1fr; }
+  .link { grid-template-columns: minmax(0, 1fr) 40px minmax(0, 1fr); }
+}
+
+/* Work */
+.cases { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.case { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 24px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.case h3 { font-size: 1.15rem; }
+.case p { margin: 0; color: var(--muted); }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 6px; }
+.tags span { font: .74rem var(--f-mono); padding: 3px 8px; border-radius: 6px; background: var(--accent-soft); color: var(--ink); }
+@media (max-width: 720px) { .cases { grid-template-columns: 1fr; } }
+
+/* Timeline */
+.timeline { display: grid; gap: 0; border-left: 2px solid var(--line); margin-left: 6px; }
+.role { position: relative; padding: 0 0 32px 28px; display: grid; grid-template-columns: 170px 1fr; gap: 20px; }
+.role > * { min-width: 0; }
+.role::before { content: ""; position: absolute; left: -7px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: var(--bg); border: 2px solid var(--accent); }
+.role.now::before { background: var(--accent); }
+.role .when { font: .82rem var(--f-mono); color: var(--muted); padding-top: 3px; font-variant-numeric: tabular-nums; }
+.role h3 { font-size: 1.1rem; }
+.role .org { color: var(--accent); font-weight: 600; margin: 2px 0 8px; }
+.role ul { margin: 0; padding-left: 18px; color: var(--muted); }
+.role li { margin-bottom: 4px; }
+@media (max-width: 640px) { .role { grid-template-columns: 1fr; gap: 4px; } }
+
+/* Skills */
+.skills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.skills div { min-width: 0; }
+.skills h3 { font: 600 .95rem var(--f-display); margin-bottom: 8px; }
+.skills p { margin: 0; color: var(--muted); }
+@media (max-width: 720px) { .skills { grid-template-columns: 1fr; } }
+
+/* Contact */
+.contact { margin-block: 72px 0; padding-block: 48px; border-top: 1px solid var(--line); display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
+.contact > * { min-width: 0; }
+.contact h2 { font-size: clamp(1.6rem, 3.4vw, 2.3rem); }
+.contact p { color: var(--muted); }
+.rows { display: grid; gap: 0; }
+.row { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+.row .k { font: .75rem var(--f-mono); text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+.row .v { font-weight: 600; overflow-wrap: anywhere; user-select: all; }
+.copy { font: 600 .8rem var(--f-body); background: none; border: 1px solid var(--line); color: var(--ink); border-radius: 6px; padding: 4px 10px; cursor: pointer; }
+@media (max-width: 720px) { .contact { grid-template-columns: 1fr; } }
+footer { padding-block: 24px 40px; color: var(--muted); font-size: .85rem; }
+</style>
+</head><body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top">Mahroof Ali P</a>
+    <nav aria-label="Sections">
+      <a href="#integrations">Integrations</a>
+      <a href="#work" class="hide-sm">Work</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="wrap">
+    <div class="hero">
+      <div>
+        <div class="status">Serving notice · can join immediately · open to UAE, GCC and Kerala</div>
+        <div class="who">Senior Developer · Zocoden, Zoho Premium Partner</div>
+        <h1>I connect <em>Zoho</em> to the systems a business already runs on.</h1>
+        <p class="lede">I'm a developer with 4+ years of experience. I write Deluge, customise Zoho CRM and Creator, and build the integrations that keep payments, leads, tickets and invoices moving between Zoho and everything else. Before Zoho, I built full-stack apps with MERN, Angular and .NET Core.</p>
+        <div class="cta">
+          <a class="btn primary" href="#contact">Get in touch</a>
+          <a class="btn ghost" href="Mahroof_Ali_P_CV.pdf" target="_blank" rel="noopener">View CV (PDF)</a>
+        </div>
+      </div>
+      <div class="code" aria-label="Example Deluge function">
+        <div class="bar"><span>razorpay_to_books.dg</span><span>Deluge</span></div>
+<pre><span class="c-dim">// Webhook: Razorpay payment → Zoho Books</span>
+payment = crmAPIRequest.<span class="c-key">get</span>(<span class="c-str">"body"</span>).<span class="c-key">toMap</span>();
+entity  = payment.<span class="c-key">get</span>(<span class="c-str">"payload"</span>).<span class="c-key">get</span>(<span class="c-str">"payment"</span>).<span class="c-key">get</span>(<span class="c-str">"entity"</span>);
+amount  = entity.<span class="c-key">get</span>(<span class="c-str">"amount"</span>) / 100;
+
+record = Map();
+record.<span class="c-key">put</span>(<span class="c-str">"customer_id"</span>, entity.<span class="c-key">get</span>(<span class="c-str">"notes"</span>).<span class="c-key">get</span>(<span class="c-str">"customer_id"</span>));
+record.<span class="c-key">put</span>(<span class="c-str">"amount"</span>, amount);
+record.<span class="c-key">put</span>(<span class="c-str">"payment_mode"</span>, <span class="c-str">"Razorpay"</span>);
+record.<span class="c-key">put</span>(<span class="c-str">"reference_number"</span>, entity.<span class="c-key">get</span>(<span class="c-str">"id"</span>));
+
+resp = zoho.books.<span class="c-key">createRecord</span>(<span class="c-str">"customerpayments"</span>, orgId, record, <span class="c-str">"books_conn"</span>);
+<span class="c-dim">// → invoice marked paid, CRM deal updated</span></pre>
+      </div>
+    </div>
+
+    <div class="figures">
+      <div><b>4+</b><span>years building software</span></div>
+      <div><b>12+</b><span>client integrations shipped</span></div>
+      <div><b>8</b><span>payment gateways connected</span></div>
+      <div><b>6</b><span>Zoho apps worked in</span></div>
+    </div>
+
+    <section id="integrations">
+      <div class="sec-head">
+        <span class="label">Integration map</span>
+        <h2>What I've wired into Zoho</h2>
+        <p>Each line is a live client integration built with Zoho APIs, REST, OAuth 2.0, webhooks and Deluge.</p>
+      </div>
+      <div class="wiring">
+        <div class="group">
+          <h3>Payments<small>8 gateways</small></h3>
+          <div class="links">
+            <div class="link"><span class="from">Razorpay · Stripe · PayPal · Checkout.com</span><span class="wire" aria-hidden="true"></span><span class="to">CRM · Books</span></div>
+            <div class="link"><span class="from">PayTabs · Network International · RAKBANK · Lean Tech</span><span class="wire" aria-hidden="true"></span><span class="to">CRM · Books</span>
+              <span class="note">Payment links, capture, invoice status and reconciliation.</span></div>
+          </div>
+        </div>
+        <div class="group">
+          <h3>Fintech &amp; KYC<small>Compliance</small></h3>
+          <div class="links">
+            <div class="link"><span class="from">VaultsPay + AiPrise</span><span class="wire" aria-hidden="true"></span><span class="to">CRM</span>
+              <span class="note">Customer onboarding with KYC/KYB checks and status tracking.</span></div>
+          </div>
+        </div>
+        <div class="group">
+          <h3>E-commerce<small>Orders &amp; buyers</small></h3>
+          <div class="links">
+            <div class="link"><span class="from">Shopify</span><span class="wire" aria-hidden="true"></span><span class="to">CRM · Books</span></div>
+            <div class="link"><span class="from">Hotmart</span><span class="wire" aria-hidden="true"></span><span class="to">CRM</span></div>
+            <div class="link"><span class="from">Zedonk</span><span class="wire" aria-hidden="true"></span><span class="to">CRM</span></div>
+          </div>
+        </div>
+        <div class="group">
+          <h3>Real estate<small>Leads &amp; listings</small></h3>
+          <div class="links">
+            <div class="link"><span class="from">Bayut · Property Finder</span><span class="wire" aria-hidden="true"></span><span class="to">CRM</span>
+              <span class="note">WhatsApp and portal leads into CRM, XML listing feeds out of CRM.</span></div>
+          </div>
+        </div>
+        <div class="group">
+          <h3>Support &amp; email<small>Customer contact</small></h3>
+          <div class="links">
+            <div class="link"><span class="from">Ziwo contact centre</span><span class="wire" aria-hidden="true"></span><span class="to">Desk</span></div>
+            <div class="link"><span class="from">Microsoft 365</span><span class="wire" aria-hidden="true"></span><span class="to">CRM · Mailshots</span></div>
+          </div>
+        </div>
+        <div class="group">
+          <h3>Health, events, fitness<small>Billing &amp; members</small></h3>
+          <div class="links">
+            <div class="link"><span class="from">Insta by Practo</span><span class="wire" aria-hidden="true"></span><span class="to">Books</span></div>
+            <div class="link"><span class="from">Vivaticket</span><span class="wire" aria-hidden="true"></span><span class="to">CRM · Books</span></div>
+            <div class="link"><span class="from">AllUp gym API</span><span class="wire" aria-hidden="true"></span><span class="to">CRM</span></div>
+          </div>
+        </div>
+        <div class="group">
+          <h3>Data &amp; HR<small>Sync &amp; devices</small></h3>
+          <div class="links">
+            <div class="link"><span class="from">Books</span><span class="wire" aria-hidden="true"></span><span class="to">Azure SQL</span></div>
+            <div class="link"><span class="from">Biometric devices (Tomcat)</span><span class="wire" aria-hidden="true"></span><span class="to">People</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="work">
+      <div class="sec-head">
+        <span class="label">Selected work</span>
+        <h2>Problems I've solved</h2>
+      </div>
+      <div class="cases">
+        <article class="case">
+          <h3>Payment gateways for CRM and Books</h3>
+          <p>Clients were matching payments to invoices by hand. I connected eight gateways so payment links come from CRM and confirmed payments land in Books against the right invoice.</p>
+          <div class="tags"><span>Deluge</span><span>Webhooks</span><span>Zoho Books API</span><span>OAuth 2.0</span></div>
+        </article>
+        <article class="case">
+          <h3>Real-estate lead and listing automation</h3>
+          <p>Leads from Bayut, Property Finder and WhatsApp now arrive in Zoho CRM automatically, and property listings are published back to the portals as XML feeds from CRM.</p>
+          <div class="tags"><span>Zoho CRM</span><span>REST APIs</span><span>XML feeds</span></div>
+        </article>
+        <article class="case">
+          <h3>Custom Shopify integration</h3>
+          <p>Set up the standard Zoho–Shopify extension, then built a custom sync for the customer, order, product and invoice data it didn't cover.</p>
+          <div class="tags"><span>Shopify API</span><span>Zoho CRM</span><span>Zoho Books</span></div>
+        </article>
+        <article class="case">
+          <h3>Biometric attendance into Zoho People</h3>
+          <p>Set up an Apache Tomcat middleware server that pushes punches from biometric devices into Zoho People, so HR no longer imports attendance by hand.</p>
+          <div class="tags"><span>Apache Tomcat</span><span>Zoho People API</span></div>
+        </article>
+        <article class="case">
+          <h3>Container maintenance system</h3>
+          <p>At Paripoorna, built repair, estimate and cost tracking for container depots. <a href="https://www.iinterchange.com/container-depot-software" target="_blank" rel="noopener">See the product</a></p>
+          <div class="tags"><span>Angular</span><span>.NET Core</span><span>PostgreSQL</span></div>
+        </article>
+        <article class="case">
+          <h3>Transport management system</h3>
+          <p>At LoadRunnr, built real-time vehicle and order tracking with payments and push notifications. <a href="https://github.com/mahroofalip/transport_app_client" target="_blank" rel="noopener">View code on GitHub</a></p>
+          <div class="tags"><span>React</span><span>Node.js</span><span>Socket.IO</span><span>AWS</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="sec-head">
+        <span class="label">Experience</span>
+        <h2>Where I've worked</h2>
+      </div>
+      <div class="timeline">
+        <div class="role now">
+          <div class="when">Feb 2025 – now</div>
+          <div>
+            <h3>Senior Developer</h3>
+            <div class="org">Zocoden, Zoho Premium Partner (formerly Alchemist Advanced Technologies)</div>
+            <ul>
+              <li>Deluge scripting, CRM customisation (modules, layouts, buttons, Blueprints), Creator apps and widgets.</li>
+              <li>12+ client integrations across CRM, Books, Desk, Inventory, Creator and People.</li>
+              <li>Code reviews and mentoring junior developers; Agile/Scrum with Jira.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="role">
+          <div class="when">Jan 2023 – Dec 2024</div>
+          <div>
+            <h3>Full Stack Software Developer</h3>
+            <div class="org">Paripoorna Software · Bangalore (hybrid)</div>
+            <ul>
+              <li>Led Angular and .NET Core development for logistics and recruitment products.</li>
+              <li>Built a job platform with MERN and GraphQL, plus an inventory system and AWS deployments.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="role">
+          <div class="when">May 2022 – Jan 2023</div>
+          <div>
+            <h3>MERN Stack Developer</h3>
+            <div class="org">LoadRunnr Technologies · Bangalore</div>
+            <ul>
+              <li>Transport management system with React, Node.js and Socket.IO; PayPal and Razorpay payments.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="role">
+          <div class="when">Jul 2021 – May 2022</div>
+          <div>
+            <h3>MERN Stack Developer (Trainee)</h3>
+            <div class="org">Brototype · Kochi</div>
+            <ul>
+              <li>Project-based MERN programme; built and deployed e-commerce and logistics apps on AWS.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="sec-head">
+        <span class="label">Toolkit</span>
+        <h2>What I work with</h2>
+      </div>
+      <div class="skills">
+        <div><h3>Zoho</h3><p>Deluge, Zoho CRM, Creator, Books, Desk, Inventory, People, Flow, Blueprints, custom functions, widgets, Zoho REST APIs</p></div>
+        <div><h3>Web</h3><p>JavaScript, TypeScript, React, Next.js, Angular, Node.js, Express, .NET Core, GraphQL, REST, Socket.IO</p></div>
+        <div><h3>Data &amp; cloud</h3><p>PostgreSQL, MySQL, MongoDB, Azure SQL, Snowflake, AWS (EC2, S3, Lambda), Azure, Docker, Git, Jira</p></div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <div>
+        <span class="label">Contact</span>
+        <h2>Hiring a Zoho or full-stack developer?</h2>
+        <p>I'm serving notice and can join immediately. I'm open to roles in the UAE, Saudi Arabia, Qatar, Kuwait, Oman, Bahrain and Kerala (Kochi, Kozhikode), on-site, hybrid or remote.</p>
+      </div>
+      <div class="rows">
+        <div class="row"><span class="k">Email</span><span class="v" id="email">alimahroof155@gmail.com</span><button class="copy" type="button" data-copy="email">Copy</button></div>
+        <div class="row"><span class="k">Phone / WhatsApp</span><span class="v" id="phone">+91 90488 74859</span><button class="copy" type="button" data-copy="phone">Copy</button></div>
+        <div class="row"><span class="k">LinkedIn</span><a class="v" href="https://www.linkedin.com/in/mahroofali" target="_blank" rel="noopener">linkedin.com/in/mahroofali</a></div>
+        <div class="row"><span class="k">GitHub</span><a class="v" href="https://github.com/mahroofalip" target="_blank" rel="noopener">github.com/mahroofalip</a></div>
+      </div>
+    </section>
+  </div>
+</main>
+<footer><div class="wrap">Mahroof Ali P · Senior Developer · Open to UAE, GCC and Kerala</div></footer>
+
+<script>
+document.querySelectorAll('.copy').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    var el = document.getElementById(btn.dataset.copy);
+    var text = el.textContent.trim();
+    var done = function () { btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = 'Copy'; }, 1500); };
+    var fallback = function () {
+      var r = document.createRange(); r.selectNodeContents(el);
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      btn.textContent = 'Selected';
+    };
+    try { navigator.clipboard.writeText(text).then(done, fallback); } catch (e) { fallback(); }
+  });
+});
+</script>
+</body></html>
